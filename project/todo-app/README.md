@@ -18,7 +18,7 @@ kubectl create deploy todo-app --image=docker.io/bvadocker/todo-app:1.2
 ```
 # With port specified
 docker run --rm --name todo-app -p 8080:8080 -e PORT=8080 docker.io/bvadocker/todo-app:1.2
-# Default port 5000
+# Default port
 docker run --rm --name todo-app -p 5000:5000 docker.io/bvadocker/todo-app:1.2
 ```
 
