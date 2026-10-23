@@ -7,11 +7,11 @@ Application web server that outputs "Server started in port NNNN" when it is sta
 # in the Dockerfile directory
 docker build -t <your tag> .
 ```
-or use the ready image from https://hub.docker.com/r/bvadocker/todo-app:1.2
+or use the ready image from https://hub.docker.com/r/bvadocker/todo-app
 
 ## Start in k8s
 ```
-kubectl create deploy todo-app --image=docker.io/bvadocker/todo-app
+kubectl create deploy todo-app --image=docker.io/bvadocker/todo-app:1.2
 ```
 
 ## Start in docker
