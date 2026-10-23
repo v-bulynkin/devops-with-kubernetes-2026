@@ -16,4 +16,11 @@ or use the ready image from https://hub.docker.com/r/bvadocker/log-output
 ## Start in k8s
 ```
 kubectl create deploy log-output --image=docker.io/bvadocker/log-output
+# or declaratively
+kubectl apply -f manifests/deployment.yaml
+```
+
+## See logs
+```
+kubectl logs -f log-output<press tab> <--tail 1>
 ```
