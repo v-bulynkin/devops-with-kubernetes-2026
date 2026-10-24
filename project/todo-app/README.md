@@ -43,4 +43,4 @@ kubectl apply -f ../manifests/service.yaml
 ```
 It opens NodePort 30080 to targetPort 5000.  
 If you use k3d, you should forward a port to your cluster from Docker, for example, `--port 8082:30080@agent:0`.  
-In this case, the external access will be http://<your docker server ip or localhost>:8082
+In this case, the external access will be http://\<your docker server ip or localhost\>:8082
