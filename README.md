@@ -8,3 +8,4 @@
 [1.4](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.4/project/todo-app) - todo-app deploy manifest  
 [1.5](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.5/project/todo-app#check-if-it-works-in-k8s) - port-forward  
 [1.6](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.6/project/todo-app#service-external-access-to-the-webpage) - Service (NodePort)  
+[1.7](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.7/project/log-output) - log-output (webpage, Ingress)  

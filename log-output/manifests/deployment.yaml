@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: log-output
-          image: docker.io/bvadocker/log-output
+          image: bvadocker/log-output:1.7
