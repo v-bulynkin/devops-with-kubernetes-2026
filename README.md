@@ -6,3 +6,4 @@
 [1.2](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.2/project/todo-app)  
 [1.3](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.3/log-output)  
 [1.4](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.4/project/todo-app)  
+[1.5](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.5/project/todo-app#check-if-it-works-in-k8s)  
