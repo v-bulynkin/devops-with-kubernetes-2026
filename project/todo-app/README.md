@@ -36,3 +36,11 @@ It creates a network tunnel from your local machine (port 3000) straight to the 
 1. In another console session, execute `curl localhost:3000`.
 
 In both cases, the application should return "Server started in port 5000".
+
+## Service (external access to the webpage)
+```
+kubectl apply -f ../manifests/service.yaml
+```
+It opens NodePort 30080 to targetPort 5000.  
+If you use k3d, you should forward a port to your cluster from Docker, for example, `--port 8082:30080@agent:0`.  
+In this case, the external access will be http://<your docker server ip or localhost>:8082
