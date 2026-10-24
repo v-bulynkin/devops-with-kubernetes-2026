@@ -24,3 +24,15 @@ docker run --rm --name todo-app -p 8080:8080 -e PORT=8080 docker.io/bvadocker/to
 docker run --rm --name todo-app -p 5000:5000 docker.io/bvadocker/todo-app:1.2
 ```
 
+## Check if it works in k8s
+
+After the app has started, execute the following command:
+```
+kubectl port-forward <todo-app pod name> 3000:5000
+```
+It creates a network tunnel from your local machine (port 3000) straight to the pod (port 5000). While console is captured by this command, you can try:
+
+1. To open http://localhost:3000 in a web-browser.
+1. In another console session, execute `curl localhost:3000`.
+
+In both cases, the application should return "Server started in port 5000".
