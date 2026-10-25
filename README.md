@@ -10,3 +10,4 @@
 [1.6](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.6/project/todo-app#service-external-access-to-the-webpage) - Service (NodePort)  
 [1.7](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.7/log-output) - log-output (webpage, Ingress)  
 [1.8](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.8/project/todo-app#external-access-to-the-webpage) - todo-app (Ingress)  
+[1.9](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.9/ping-pong) - ping-pong app (shared Ingress with log-output)  
