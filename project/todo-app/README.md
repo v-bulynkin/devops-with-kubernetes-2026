@@ -9,19 +9,17 @@ docker build -t <your tag> .
 ```
 or use the ready image from https://hub.docker.com/r/bvadocker/todo-app
 
-## Start in k8s
-```
-kubectl create deploy todo-app --image=docker.io/bvadocker/todo-app:1.2
-# or declaratively
-kubectl apply -f ../manifests/deployment.yaml
-```
-
 ## Start in docker
 ```
 # With port specified
 docker run --rm --name todo-app -p 8080:8080 -e PORT=8080 docker.io/bvadocker/todo-app:1.2
 # Default port
 docker run --rm --name todo-app -p 5000:5000 docker.io/bvadocker/todo-app:1.2
+```
+
+## Start in k8s
+```
+kubectl apply -f ../manifests
 ```
 
 ## Check if it works in k8s
@@ -37,10 +35,9 @@ It creates a network tunnel from your local machine (port 3000) straight to the 
 
 In both cases, the application should return "Server started in port 5000".
 
-## Service (external access to the webpage)
-```
-kubectl apply -f ../manifests/service.yaml
-```
-It opens NodePort 30080 to targetPort 5000.  
+## External access to the webpage
 If you use k3d, you should forward a port to your cluster from Docker, for example, `--port 8082:30080@agent:0`.  
-In this case, the external access will be http://\<your docker server ip or localhost\>:8082
+In this case, the external access will be http://\<your docker server ip or localhost\>:8082  
+Ingress path: /  
+Service port: 5000  
+Pod port: 5000  
