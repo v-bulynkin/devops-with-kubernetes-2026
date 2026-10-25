@@ -1,0 +1,16 @@
+FROM python:3.12-alpine
+
+ENV PATH="/opt/venv/bin:$PATH"
+WORKDIR /app
+
+RUN adduser -D appuser && \
+    python -m venv /opt/venv && \
+    chown -R appuser:appuser /opt/venv
+
+USER appuser
+
+RUN pip install --no-cache-dir flask gunicorn
+
+COPY --chown=appuser:appuser reader.py .
+
+CMD ["gunicorn", "--workers", "1", "--bind", "0.0.0.0:5000", "reader:app"]

@@ -12,6 +12,17 @@ spec:
       labels:
         app: log-output
     spec:
+      volumes:
+        - name: shared-volume
+          emptyDir: {}
       containers:
-        - name: log-output
-          image: bvadocker/log-output:1.7
+        - name: log-output-writer
+          image: bvadocker/log-output-writer:1.10
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /shared
+        - name: log-output-reader
+          image: bvadocker/log-output-reader:1.10
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /shared

@@ -1,0 +1,15 @@
+FROM python:3.12-alpine
+
+ENV PYTHONUNBUFFERED=1
+ENV PATH="/opt/venv/bin:$PATH"
+WORKDIR /app
+
+RUN adduser -D appuser && \
+    python -m venv /opt/venv && \
+    chown -R appuser:appuser /opt/venv
+
+USER appuser
+
+COPY --chown=appuser:appuser writer.py .
+
+CMD ["python", "writer.py"]
