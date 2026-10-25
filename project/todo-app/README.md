@@ -36,8 +36,8 @@ It creates a network tunnel from your local machine (port 3000) straight to the 
 In both cases, the application should return "Server started in port 5000".
 
 ## External access to the webpage
-If you use k3d, you should forward a port to your cluster from Docker, for example, `--port 8082:30080@agent:0`.  
-In this case, the external access will be http://\<your docker server ip or localhost\>:8082  
+If you use k3d, you should forward a port to your cluster from Docker, for example, `-p 8081:80@loadbalancer`.  
+In this case, the external access will be http://\<your docker server ip or localhost\>:8081  
 Ingress path: /  
 Service port: 5000  
 Pod port: 5000  
