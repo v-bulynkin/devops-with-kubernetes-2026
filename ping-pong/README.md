@@ -2,20 +2,33 @@
 
 Application that simply responds with "pong $NUMBER" to a GET request and increases a counter (the $NUMBER) so that you can see how many requests have been sent. The counter is kept in memory so it resets at app restart. Route requests directed '/pingpong' to it.
 
+Works together with [log-output app](../log-output/README.md), showing current score on its webpage.
+
 ## Build image
 ```
 # in the Dockerfile directory
-docker build -t bvadocker/ping-pong:1.9 .
+docker build -t bvadocker/ping-pong:1.11 .
 # push
-docker push bvadocker/ping-pong:1.9
+docker push bvadocker/ping-pong:1.11
 ```
 Dockerhub page: https://hub.docker.com/r/bvadocker/ping-pong
 
 ## Start in k8s
+First of all, persistent volume must be created (from log-output):
+```
+kubectl apply -f ../log-output/pv/pv.yaml
+```
+
+To work woth log-output, start it first:
+```
+kubectl apply -f ../log-output/manifests
+```
+
+Then start ping-pong itself:
 ```
 kubectl apply -f manifests -f ../log-output/manifests/ingress.yaml
 ```
-The ingress manifest are shared with log-output app, so you need to apply it separately.
+The ingress manifest are shared with log-output app, so you need to apply it separately (if you haven't started `../log-output/manifests` earlier).
 
 ## External access to the webpage
 If you use k3d, you should forward a port to your cluster from Docker, for example, `-p 8081:80@loadbalancer`.  

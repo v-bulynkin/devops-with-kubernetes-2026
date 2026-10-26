@@ -12,3 +12,4 @@
 [1.8](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.8/project/todo-app#external-access-to-the-webpage) - todo-app (Ingress)  
 [1.9](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.9/ping-pong) - ping-pong app (shared Ingress with log-output)  
 [1.10](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.10/log-output) - split log-output to 2 containers (shared emptyDir in a pod)  
+[1.11](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.11/log-output) - PV, PVC (log-output and ping-pong share one volume)  
