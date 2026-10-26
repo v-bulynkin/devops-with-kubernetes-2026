@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 
 app = Flask(__name__)
@@ -8,6 +9,11 @@ counter = 0
 def ping_pong():
     global counter
     counter += 1
+    try:
+        with open('/shared/counter.txt', 'w') as f:
+            f.write(str(counter))
+    except Exception as e:
+        print(f"Error writing counter: {e}")
     return f"pong {counter}"
 
 if __name__ == '__main__':

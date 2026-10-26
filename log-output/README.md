@@ -27,6 +27,12 @@ https://hub.docker.com/r/bvadocker/log-output-writer
 https://hub.docker.com/r/bvadocker/log-output-reader
 
 ## Start in k8s
+First of all, persistent volume must be created:
+```
+kubectl apply -f pv
+```
+
+Then, you can kick off the deploy with pvc/service/ingress:
 ```
 kubectl apply -f manifests
 ```

@@ -14,7 +14,8 @@ spec:
     spec:
       volumes:
         - name: shared-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: log-output-pvc
       containers:
         - name: log-output-writer
           image: bvadocker/log-output-writer:1.10
