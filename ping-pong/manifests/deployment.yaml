@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ping-pong
-          image: bvadocker/ping-pong:1.9
+          image: bvadocker/ping-pong:1.11
           volumeMounts:
             - name: shared-volume
               mountPath: /shared
