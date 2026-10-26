@@ -12,6 +12,9 @@ spec:
       labels:
         app: log-output
     spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 2000
       volumes:
         - name: shared-volume
           persistentVolumeClaim:

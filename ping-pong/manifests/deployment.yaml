@@ -12,6 +12,9 @@ spec:
       labels:
         app: ping-pong
     spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 2000
       containers:
         - name: ping-pong
           image: bvadocker/ping-pong:1.11
