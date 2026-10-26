@@ -12,6 +12,13 @@ spec:
       labels:
         app: todo-app
     spec:
+      volumes:
+        - name: cache-volume
+          persistentVolumeClaim:
+            claimName: todo-app-pvc
       containers:
         - name: todo-app
-          image: docker.io/bvadocker/todo-app:1.2
+          image: docker.io/bvadocker/todo-app:1.12
+          volumeMounts:
+            - name: cache-volume
+              mountPath: /data
