@@ -2,14 +2,14 @@
 
 Application that simply responds with "pong $NUMBER" to a GET request and increases a counter (the $NUMBER) so that you can see how many requests have been sent. The counter is kept in memory so it resets at app restart. Route requests directed '/pingpong' to it.
 
-Works together with [log-output app](../log-output/README.md), showing current score on its webpage.
+Works together with [log-output app](../log-output/README.md), showing current score on its webpage (via HTTP GET requests to URL /pings from log-output-reader container).
 
 ## Build image
 ```
 # in the Dockerfile directory
-docker build -t bvadocker/ping-pong:1.11 .
+docker build -t bvadocker/ping-pong:2.1 .
 # push
-docker push bvadocker/ping-pong:1.11
+docker push bvadocker/ping-pong:2.1
 ```
 Dockerhub page: https://hub.docker.com/r/bvadocker/ping-pong
 

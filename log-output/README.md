@@ -18,11 +18,11 @@ Log output app works together with ping-pong app, which adds second string to th
 ## Build image
 ```
 # in the Dockerfile directory
-docker build -t bvadocker/log-output-writer:1.11 -f Dockerfile.writer .
-docker build -t bvadocker/log-output-reader:1.11 -f Dockerfile.reader .
+docker build -t bvadocker/log-output-writer:2.1 -f Dockerfile.writer .
+docker build -t bvadocker/log-output-reader:2.1 -f Dockerfile.reader .
 # push
-docker push bvadocker/log-output-writer:1.11
-docker push bvadocker/log-output-reader:1.11
+docker push bvadocker/log-output-writer:2.1
+docker push bvadocker/log-output-reader:2.1
 ```
 Dockerhub pages:  
 https://hub.docker.com/r/bvadocker/log-output-writer  
