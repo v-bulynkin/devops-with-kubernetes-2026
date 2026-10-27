@@ -15,3 +15,7 @@
 [1.11](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.11/log-output) - PV, PVC (log-output and ping-pong share one volume)  
 [1.12](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.12/project/todo-app) - PV, PVC, downloading and caching random pic for 10 min (todo-app)  
 [1.13](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/1.13/project/todo-app) - todo-app: add input field, send button and hardcoded todos  
+
+## Chapter 3
+
+[2.1](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.1/log-output) - log-output get counter from ping-pong via HTTP GET  

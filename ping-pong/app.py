@@ -9,12 +9,12 @@ counter = 0
 def ping_pong():
     global counter
     counter += 1
-    try:
-        with open('/shared/counter.txt', 'w') as f:
-            f.write(str(counter))
-    except Exception as e:
-        print(f"Error writing counter: {e}")
     return f"pong {counter}"
+
+@app.route('/pings')
+def pings():
+    """Returns the current counter value"""
+    return str(counter)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

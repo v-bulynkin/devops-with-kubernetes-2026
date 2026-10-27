@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import Flask
 
 app = Flask(__name__)
@@ -19,14 +20,13 @@ def index():
         except Exception as e:
             latest_log_entry = f"Error reading file: {e}"
 
-    # Get counter from the file
+    # Get counter via HTTP
     counter_val = "0"
-    if os.path.exists(counter_path):
-        try:
-            with open(counter_path, 'r') as f:
-                counter_val = f.read()
-        except Exception as e:
-            counter_val = f"Error reading counter: {e}"
+    try:
+        response = requests.get('http://ping-pong-svc:5000/pings')
+        counter_val = response.text
+    except Exception as e:
+        counter_val = f"Error: {e}"
 
     return f"""
     <html>
