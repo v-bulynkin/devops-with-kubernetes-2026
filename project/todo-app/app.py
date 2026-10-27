@@ -30,22 +30,29 @@ def get_image_data():
     
     print(f"Downloading new image: {url}")
     
-    try:
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-        
-        # Save image to PV
-        with open(CACHE_FILE, 'wb') as f:
-            f.write(response.content)
-        
-        # Save download time
-        with open(META_FILE, 'w') as f:
-            f.write(str(now))
+    max_retries = 5
+    for attempt in range(1, max_retries + 1):
+        try:
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
             
-        return CACHE_FILE
-    except Exception as e:
-        print(f"Error downloading image: {e}")
-        return None
+            # Save image to PV
+            with open(CACHE_FILE, 'wb') as f:
+                f.write(response.content)
+            
+            # Save download time
+            with open(META_FILE, 'w') as f:
+                f.write(str(now))
+                
+            return CACHE_FILE
+        except Exception as e:
+            print(f"Attempt {attempt} failed: {e}")
+            if attempt < max_retries:
+                time.sleep(1)
+            else:
+                print("All retry attempts failed.")
+    
+    return None
 
 @app.route('/')
 def index():
