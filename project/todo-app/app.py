@@ -23,7 +23,8 @@ def get_image_data():
         if now - timestamp < CACHE_DURATION:
             return CACHE_FILE
 
-    # Если кэш протух или его нет, скачиваем новый
+    # If cache expired, download a new picture
+    # https://picsum.photos/1200 is unavailable, using another resource
     img_number = random.randint(1, 2000)
     url = f"https://yavuzceliker.github.io/sample-images/image-{img_number}.jpg"
     
