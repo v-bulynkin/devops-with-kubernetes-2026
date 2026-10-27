@@ -19,6 +19,7 @@ spec:
       containers:
         - name: todo-app
           image: docker.io/bvadocker/todo-app:1.12
+          imagePullPolicy: Always
           volumeMounts:
             - name: cache-volume
               mountPath: /data
