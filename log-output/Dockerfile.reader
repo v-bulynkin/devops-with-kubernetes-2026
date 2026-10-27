@@ -9,7 +9,7 @@ RUN adduser -D appuser && \
 
 USER appuser
 
-RUN pip install --no-cache-dir flask gunicorn
+RUN pip install --no-cache-dir flask gunicorn requests
 
 COPY --chown=appuser:appuser reader.py .
 
