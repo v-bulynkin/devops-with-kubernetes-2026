@@ -12,27 +12,108 @@
             justify-content: flex-start;
             min-height: 100vh;
             margin: 0;
-            padding-top: 50px;
+            padding-top: 20px;
             font-family: sans-serif;
         }
+
         h1 {
             margin-bottom: 20px;
         }
+
         img {
             max-width: 400px;
             width: 100%;
             height: auto;
             display: block;
         }
+
         .caption {
             margin-top: 15px;
             font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .send-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .send-btn:hover {
+            background-color: #218838;
+        }
+
+        .send-btn:active {
+            background-color: #1e7e34;
+            transform: translateY(1px);
+        }
+
+        h2 {
+            width: 100%;
+            margin: 20px 0;
+            padding-left: 20px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .todo-list {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .todo-item {
+            background-color: #f0f0f0;
+            border-left: 6px solid #28a745;
+            padding: 15px 20px;
+            margin-bottom: 2px;
+            font-weight: bold;
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
         }
     </style>
 </head>
 <body>
     <h1>Todo App</h1>
-    <img src="{{ image_url }}">
+    <img src="{{ image_url }}" alt="Random Image">
     <div class="caption">DevOps with Kubernetes 2026</div>
+
+    <!-- input field -->
+    <div class="input-container">
+        <input type="text" maxlength="140" placeholder="Enter a new todo (max 140 characters)">
+        <button class="send-btn">Send</button>
+    </div>
+
+    <!-- Todos list -->
+    <h2>Todos</h2>
+    <ul class="todo-list">
+        <li class="todo-item">Learn Kubernetes basics</li>
+        <li class="todo-item">Deploy application to cluster</li>
+        <li class="todo-item">Configure persistent volumes</li>
+    </ul>
 </body>
 </html>
