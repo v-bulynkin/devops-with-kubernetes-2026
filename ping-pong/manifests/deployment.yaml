@@ -17,7 +17,7 @@ spec:
         fsGroup: 2000
       containers:
         - name: ping-pong
-          image: bvadocker/ping-pong:1.11
+          image: bvadocker/ping-pong:2.1
           volumeMounts:
             - name: shared-volume
               mountPath: /shared

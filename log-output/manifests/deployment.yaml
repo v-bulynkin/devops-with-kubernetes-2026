@@ -21,12 +21,12 @@ spec:
             claimName: log-output-pvc
       containers:
         - name: log-output-writer
-          image: bvadocker/log-output-writer:1.11
+          image: bvadocker/log-output-writer:2.1
           volumeMounts:
             - name: shared-volume
               mountPath: /shared
         - name: log-output-reader
-          image: bvadocker/log-output-reader:1.11
+          image: bvadocker/log-output-reader:2.1
           volumeMounts:
             - name: shared-volume
               mountPath: /shared
