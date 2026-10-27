@@ -27,18 +27,12 @@
             display: block;
         }
 
-        .caption {
-            margin-top: 15px;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
         .input-container {
             display: flex;
             gap: 10px;
             margin-bottom: 30px;
-            width: 90%;
-            max-width: 600px;
+            width: 60%;
+            min-width: 280px;
         }
 
         input[type="text"] {
@@ -73,9 +67,8 @@
         h2 {
             width: 100%;
             margin: 20px 0;
-            padding-left: 20px;
-            box-sizing: border-box;
-            text-align: left;
+            padding-left: 0;
+            text-align: center;
         }
 
         .todo-list {
@@ -95,14 +88,23 @@
             width: 100%;
             text-align: left;
         }
+
+        .caption {
+            margin-top: auto;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            font-style: italic;
+            width: 100%;
+            text-align: center;
+            color: #555;
+        }
     </style>
 </head>
 <body>
     <h1>Todo App</h1>
     <img src="{{ image_url }}" alt="Random Image">
-    <div class="caption">DevOps with Kubernetes 2026</div>
-
-    <!-- input field -->
+    
+    <!-- Input field -->
     <div class="input-container">
         <input type="text" maxlength="140" placeholder="Enter a new todo (max 140 characters)">
         <button class="send-btn">Send</button>
@@ -115,5 +117,8 @@
         <li class="todo-item">Deploy application to cluster</li>
         <li class="todo-item">Configure persistent volumes</li>
     </ul>
+
+    <!-- Footer -->
+    <div class="caption">DevOps with Kubernetes 2026</div>
 </body>
 </html>
