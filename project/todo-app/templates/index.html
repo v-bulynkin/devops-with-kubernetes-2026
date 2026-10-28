@@ -111,19 +111,64 @@
     
     <!-- Input field -->
     <div class="input-container">
-        <input type="text" maxlength="140" placeholder="Enter a new todo (max 140 characters)">
-        <button class="send-btn">Send</button>
+        <input type="text" id="todo-input" maxlength="140" placeholder="Enter a new todo (max 140 characters)">
+        <button id="send-btn" class="send-btn">Send</button>
     </div>
 
     <!-- Todos list -->
     <h2>Todos</h2>
-    <ul class="todo-list">
-        <li class="todo-item">Learn Kubernetes basics</li>
-        <li class="todo-item">Deploy application to cluster</li>
-        <li class="todo-item">Configure persistent volumes</li>
+    <ul id="todo-list" class="todo-list">
     </ul>
 
     <!-- Footer -->
     <div class="caption">DevOps with Kubernetes 2026</div>
+<script>
+    const todoList = document.getElementById('todo-list');
+    const todoInput = document.getElementById('todo-input');
+    const sendBtn = document.getElementById('send-btn');
+    const API_URL = 'http://localhost:5000/todos';
+
+    async function fetchTodos() {
+        try {
+            const response = await fetch(API_URL);
+            const todos = await response.json();
+            todoList.innerHTML = '';
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.className = 'todo-item';
+                li.textContent = todo;
+                todoList.appendChild(li);
+            });
+        } catch (err) {
+            console.error('Error fetching todos:', err);
+        }
+    }
+
+    sendBtn.addEventListener('click', async () => {
+        const todoText = todoInput.value.trim();
+        if (!todoText) return;
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ todo: todoText })
+            });
+            if (response.ok) {
+                todoInput.value = '';
+                await fetchTodos();
+            } else {
+                console.error('Error adding todo:', response.statusText);
+            }
+        } catch (err) {
+            console.error('Error adding todo:', err);
+        }
+    });
+
+    // Load todos on startup
+    fetchTodos();
+</script>
 </body>
 </html>
