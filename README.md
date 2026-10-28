@@ -19,3 +19,4 @@
 ## Chapter 3
 
 [2.1](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.1/log-output) - log-output get counter from ping-pong via HTTP GET  
+[2.2](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.2/project) - add todo-backend and add todos feature (keeping in memory for now)  
