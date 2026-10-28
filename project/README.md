@@ -14,7 +14,17 @@ After it's completed, start the rest:
 kubectl apply -f pv -f manifests
 ```
 
-## General description
+## Screenshots
+
+Todo-app (URL: your BACKEND_BASE_URL/)
+
+![Todo-app](pics/todo-app-2.2.png)
+
+Todo-backend (URL: your BACKEND_BASE_URL/todos)
+
+![Todo-app](pics/todo-backend-2.2.png)
+
+## General description of the project
 
 The project is a simple todo application with the familiar features of create, read, update, and delete (CRUD). Todo is a text like "I need to clean the house" that can be in the state of not-done or done.
 
