@@ -59,9 +59,12 @@ def index():
     image_path = get_image_data()
     if not image_path:
         return "Error loading image", 500
-    
+
+    # API_BASE_URL (backend external address like http://k1:8081) must be set in deployment env
+    backend_base_url = os.environ.get('BACKEND_BASE_URL')
+
     # Return image path (through serve_from_directory)
-    return render_template('index.html', image_url='/static/cached_img.jpg')
+    return render_template('index.html', image_url='/static/cached_img.jpg', backend_base_url=backend_base_url)
 
 @app.route('/static/cached_img.jpg')
 def serve_image():

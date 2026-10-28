@@ -23,3 +23,7 @@ spec:
           volumeMounts:
             - name: cache-volume
               mountPath: /data
+          env:
+          # BACKEND_BASE_URL (backend external address like http://k1:8081)
+          - name: BACKEND_BASE_URL
+            value: "http://k1:8081"

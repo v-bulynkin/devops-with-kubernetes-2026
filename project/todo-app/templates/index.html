@@ -126,7 +126,7 @@
     const todoList = document.getElementById('todo-list');
     const todoInput = document.getElementById('todo-input');
     const sendBtn = document.getElementById('send-btn');
-    const API_URL = 'http://k1:8081/todos';
+    const API_URL = '{{ backend_base_url }}/todos';
 
     async function fetchTodos() {
         try {
