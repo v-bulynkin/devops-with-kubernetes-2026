@@ -4,6 +4,8 @@
 
 **Todo-backend** have a GET /todos endpoint for fetching the list of todos and a POST /todos endpoint for creating a new todo. The todos are saved in memory.
 
+All objects in the project are located in the "project" namespace in Kubernetes.
+
 ## How to start
 
 In `manifests/todo-app-deploy.yaml` you need to set BACKEND_BASE_URL environment variable which point to your base backend URL, for example, http://example.com:1234.
