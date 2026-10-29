@@ -24,11 +24,16 @@ To work woth log-output, start it first:
 kubectl apply -f ../log-output/manifests
 ```
 
-Then start ping-pong itself:
+As ping-pong app set to work in "exercises" namespace, make sure the namespace is created:
+```
+kubectl apply -f ../log-output/manifests/namespace.yaml
+```
+
+Start ping-pong itself:
 ```
 kubectl apply -f manifests -f ../log-output/manifests/ingress.yaml
 ```
-The ingress manifest are shared with log-output app, so you need to apply it separately (if you haven't started `../log-output/manifests` earlier).
+The ingress and namespace manifest are shared with log-output app, so you need to apply it separately (if you haven't started `../log-output/manifests` earlier).
 
 ## External access to the webpage
 If you use k3d, you should forward a port to your cluster from Docker, for example, `-p 8081:80@loadbalancer`.  
