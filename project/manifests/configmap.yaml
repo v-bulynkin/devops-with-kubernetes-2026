@@ -5,14 +5,14 @@ metadata:
   namespace: project
 data:
   BACKEND_BASE_URL: "http://k1:8081"
-  APP_PORT: 5000
-  BACKEND_PORT: 5000
-  BACKEND_SUFFIX: '/todos'
-  CACHE_DIR: /data
-  CACHE_FILE: cached_image.jpg
-  META_FILE: cache_meta.txt
-  CACHE_DURATION: 600
+  APP_PORT: "5000"
+  BACKEND_PORT: "5000"
+  BACKEND_SUFFIX: "/todos"
+  CACHE_DIR: "/data"
+  CACHE_FILE: "cached_image.jpg"
+  META_FILE: "cache_meta.txt"
+  CACHE_DURATION: "600"
   IMAGES_BASEURL: "https://yavuzceliker.github.io/sample-images/image-"
-  IMAGES_EXTENSION: jpg
-  TEMPLATE_IMAGE_URL: '/static/cached_img.jpg'
+  IMAGES_EXTENSION: "jpg"
+  TEMPLATE_IMAGE_URL: "/static/cached_img.jpg"
   
