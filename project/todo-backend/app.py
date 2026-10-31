@@ -5,11 +5,13 @@ app = Flask(__name__)
 # In-memory storage for todos
 todos = []
 
-@app.route('/todos', methods=['GET'])
+backend_suffix = os.environ.get('BACKEND_SUFFIX')
+
+@app.route(backend_suffix, methods=['GET'])
 def get_todos():
     return jsonify(todos)
 
-@app.route('/todos', methods=['POST'])
+@app.route(backend_suffix, methods=['POST'])
 def add_todo():
     data = request.get_json()
     if data and 'todo' in data:
@@ -28,4 +30,4 @@ def add_cors_headers(response):
     return response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=os.environ.get('BACKEND_PORT'))

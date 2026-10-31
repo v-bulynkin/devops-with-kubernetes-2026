@@ -15,5 +15,16 @@ spec:
     spec:
       containers:
         - name: todo-backend
-          image: docker.io/bvadocker/todo-backend:2.2
+          image: docker.io/bvadocker/todo-backend:2.6
           imagePullPolicy: Always
+          env:
+          - name: BACKEND_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: BACKEND_PORT
+          - name: BACKEND_SUFFIX
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: BACKEND_SUFFIX

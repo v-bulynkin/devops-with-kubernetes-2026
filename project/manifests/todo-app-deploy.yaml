@@ -19,12 +19,55 @@ spec:
             claimName: todo-app-pvc
       containers:
         - name: todo-app
-          image: docker.io/bvadocker/todo-app:2.2
+          image: docker.io/bvadocker/todo-app:2.6
           imagePullPolicy: Always
           volumeMounts:
             - name: cache-volume
               mountPath: /data
           env:
-          # BACKEND_BASE_URL (backend external address like http://k1:8081)
           - name: BACKEND_BASE_URL
-            value: "http://k1:8081"
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: BACKEND_BASE_URL
+          - name: APP_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: APP_PORT
+          - name: CACHE_DIR
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: CACHE_DIR
+          - name: CACHE_FILE
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: CACHE_FILE
+          - name: META_FILE
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: META_FILE
+          - name: CACHE_DURATION
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: CACHE_DURATION
+          - name: IMAGES_BASEURL
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: IMAGES_BASEURL
+          - name: IMAGES_EXTENSION
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: IMAGES_EXTENSION
+          - name: TEMPLATE_IMAGE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: project-cm
+                key: TEMPLATE_IMAGE_URL
+

@@ -23,3 +23,4 @@
 [2.3](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.3/ping-pong) - add "exercises" namespace and move log-output and ping-pong into it  
 [2.4](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.4/project) - add "project" namespace and move project into it  
 [2.5](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.5/log-output) - add ConfigMap to log-output  
+[2.6](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.6/project) - add ConfigMap to project (no hardcoded ports, URLs or other configurations in the source code)  

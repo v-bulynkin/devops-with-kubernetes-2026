@@ -7,10 +7,10 @@ from flask import Flask, render_template, send_from_directory
 app = Flask(__name__)
 
 # Persistent Volume path
-CACHE_DIR = '/data'
-CACHE_FILE = os.path.join(CACHE_DIR, 'cached_image.jpg')
-META_FILE = os.path.join(CACHE_DIR, 'cache_meta.txt')
-CACHE_DURATION = 600  # 10 minutes
+CACHE_DIR = os.environ.get('CACHE_DIR')
+CACHE_FILE = os.path.join(CACHE_DIR, os.environ.get('CACHE_FILE'))
+META_FILE = os.path.join(CACHE_DIR, os.environ.get('META_FILE'))
+CACHE_DURATION = os.environ.get('CACHE_DURATION') # 10 minutes
 
 def get_image_data():
     now = time.time()
@@ -26,7 +26,7 @@ def get_image_data():
     # If cache expired, download a new picture
     # https://picsum.photos/1200 is unavailable, using another resource
     img_number = random.randint(1, 2000)
-    url = f"https://yavuzceliker.github.io/sample-images/image-{img_number}.jpg"
+    url = f"{os.environ.get('IMAGES_BASEURL')}{img_number}.{os.environ.get('IMAGES_EXTENSION')}"
     
     print(f"Downloading new image: {url}")
     
@@ -62,15 +62,16 @@ def index():
 
     # API_BASE_URL (backend external address like http://k1:8081) must be set in deployment env
     backend_base_url = os.environ.get('BACKEND_BASE_URL')
+    template_image_url = os.environ.get('TEMPLATE_IMAGE_URL')
 
     # Return image path (through serve_from_directory)
-    return render_template('index.html', image_url='/static/cached_img.jpg', backend_base_url=backend_base_url)
+    return render_template('index.html', image_url=template_image_url, backend_base_url=backend_base_url)
 
-@app.route('/static/cached_img.jpg')
+@app.route(image_url)
 def serve_image():
-    return send_from_directory(CACHE_DIR, 'cached_image.jpg')
+    return send_from_directory(CACHE_DIR, os.environ.get('CACHE_FILE'))
 
 if __name__ == '__main__':
     if not os.path.exists(CACHE_DIR):
         os.makedirs(CACHE_DIR)
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=os.environ.get('APP_PORT'))
