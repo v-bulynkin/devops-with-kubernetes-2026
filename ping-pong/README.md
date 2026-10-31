@@ -14,26 +14,15 @@ docker push bvadocker/ping-pong:2.1
 Dockerhub page: https://hub.docker.com/r/bvadocker/ping-pong
 
 ## Start in k8s
-First of all, persistent volume must be created (from log-output):
+First of all, persistent volume and "exercises" namespace must be created (from log-output):
 ```
-kubectl apply -f ../log-output/pv/pv.yaml
-```
-
-To work woth log-output, start it first:
-```
-kubectl apply -f ../log-output/manifests
+kubectl apply -f ../log-output/pv -f ../log-output/manifests/namespace.yaml
 ```
 
-As ping-pong app set to work in "exercises" namespace, make sure the namespace is created:
+Then, start log-output and ping-pong:
 ```
-kubectl apply -f ../log-output/manifests/namespace.yaml
+kubectl apply -f ../log-output/manifests -f manifests
 ```
-
-Start ping-pong itself:
-```
-kubectl apply -f manifests -f ../log-output/manifests/ingress.yaml
-```
-The ingress and namespace manifest are shared with log-output app, so you need to apply it separately (if you haven't started `../log-output/manifests` earlier).
 
 ## External access to the webpage
 If you use k3d, you should forward a port to your cluster from Docker, for example, `-p 8081:80@loadbalancer`.  

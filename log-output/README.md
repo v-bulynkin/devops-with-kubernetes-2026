@@ -19,27 +19,25 @@ Log output app works together with ping-pong app, which adds second string to th
 ```
 # in the Dockerfile directory
 docker build -t bvadocker/log-output-writer:2.1 -f Dockerfile.writer .
-docker build -t bvadocker/log-output-reader:2.1 -f Dockerfile.reader .
+docker build -t bvadocker/log-output-reader:2.5 -f Dockerfile.reader .
 # push
 docker push bvadocker/log-output-writer:2.1
-docker push bvadocker/log-output-reader:2.1
+docker push bvadocker/log-output-reader:2.5
 ```
 Dockerhub pages:  
 https://hub.docker.com/r/bvadocker/log-output-writer  
 https://hub.docker.com/r/bvadocker/log-output-reader
 
 ## Start in k8s
-First of all, persistent volume must be created:
+First of all, persistent volume and "exercises" namespace must be created:
 ```
-kubectl apply -f pv
-```
-
-Then, you can kick off the deploy with pvc/service/ingress:
-```
-kubectl apply -f manifests
+kubectl apply -f pv -f manifests/namespace.yaml
 ```
 
-At the end, start [ping-pong app](../ping-pong/README.md).
+Then, start log-output and ping-pong:
+```
+kubectl apply -f manifests -f ../ping-pong/manifests
+```
 
 ## See logs
 ```
