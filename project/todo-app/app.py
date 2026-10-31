@@ -67,7 +67,7 @@ def index():
     # Return image path (through serve_from_directory)
     return render_template('index.html', image_url=template_image_url, backend_base_url=backend_base_url)
 
-@app.route(image_url)
+@app.route(template_image_url)
 def serve_image():
     return send_from_directory(CACHE_DIR, os.environ.get('CACHE_FILE'))
 
