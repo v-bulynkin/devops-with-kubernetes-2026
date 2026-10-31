@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -5,13 +6,14 @@ app = Flask(__name__)
 # In-memory storage for todos
 todos = []
 
-backend_suffix = os.environ.get('BACKEND_SUFFIX')
+# Get suffix from environment
+BACKEND_SUFFIX = os.environ.get('BACKEND_SUFFIX', '/todos')
 
-@app.route(backend_suffix, methods=['GET'])
+@app.route(BACKEND_SUFFIX, methods=['GET'])
 def get_todos():
     return jsonify(todos)
 
-@app.route(backend_suffix, methods=['POST'])
+@app.route(BACKEND_SUFFIX, methods=['POST'])
 def add_todo():
     data = request.get_json()
     if data and 'todo' in data:
@@ -30,4 +32,4 @@ def add_cors_headers(response):
     return response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=os.environ.get('BACKEND_PORT'))
+    app.run(host='0.0.0.0', port=int(os.environ.get('BACKEND_PORT', 5000)))
