@@ -13,7 +13,7 @@ docker push bvadocker/ping-pong:2.1
 ```
 Dockerhub page: https://hub.docker.com/r/bvadocker/ping-pong
 
-## Start in k8s
+## How to run the service in k8s
 First of all, persistent volume and "exercises" namespace must be created (from log-output):
 ```
 kubectl apply -f ../log-output/pv -f ../log-output/manifests/namespace.yaml
@@ -31,4 +31,4 @@ Ingress path: /pingpong
 Service port: 5000  
 Pod port: 5000
 
-URL example: http://192.168.1.21:8081/pingpong
+URL example: http://k1:8081/pingpong
