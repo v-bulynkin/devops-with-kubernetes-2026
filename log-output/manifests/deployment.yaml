@@ -20,6 +20,9 @@ spec:
         - name: shared-volume
           persistentVolumeClaim:
             claimName: log-output-pvc
+        - name: config-volume
+          configMap:
+            name: log-output-config
       containers:
         - name: log-output-writer
           image: bvadocker/log-output-writer:2.1
@@ -28,8 +31,16 @@ spec:
             - name: shared-volume
               mountPath: /shared
         - name: log-output-reader
-          image: bvadocker/log-output-reader:2.1
+          image: bvadocker/log-output-reader:2.5
           imagePullPolicy: Always
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: log-output-config
+                  key: MESSAGE
           volumeMounts:
             - name: shared-volume
               mountPath: /shared
+            - name: config-volume
+              mountPath: /config

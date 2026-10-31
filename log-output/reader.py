@@ -7,6 +7,7 @@ app = Flask(__name__)
 # Path to the shared file in the emptyDir volume
 file_path = '/shared/data.txt'
 counter_path = '/shared/counter.txt'
+config_file_path = '/config/information.txt'
 
 @app.route('/')
 def index():
@@ -28,10 +29,22 @@ def index():
     except Exception as e:
         counter_val = f"Error: {e}"
 
+    # Get additional config info
+    message = os.environ.get('MESSAGE', '')
+    file_content = ""
+    if os.path.exists(config_file_path):
+        try:
+            with open(config_file_path, 'r') as f:
+                file_content = f.read().strip()
+        except Exception as e:
+            file_content = f"Error reading file: {e}"
+
     return f"""
     <html>
         <head><title>Log Output</title></head>
         <body>
+            <p>file content: {file_content}</p>
+            <p>env variable: MESSAGE={message}</p>
             <p>{latest_log_entry}</p>
             <p>Ping / Pongs: {counter_val}</p>
         </body>
@@ -40,3 +53,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+<EOF>
