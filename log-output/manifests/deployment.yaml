@@ -22,7 +22,7 @@ spec:
             claimName: log-output-pvc
         - name: config-volume
           configMap:
-            name: log-output-config
+            name: log-output-cm
       containers:
         - name: log-output-writer
           image: bvadocker/log-output-writer:2.1
@@ -37,7 +37,7 @@ spec:
             - name: MESSAGE
               valueFrom:
                 configMapKeyRef:
-                  name: log-output-config
+                  name: log-output-cm
                   key: MESSAGE
           volumeMounts:
             - name: shared-volume
