@@ -51,6 +51,7 @@ Stop and delete everything:
 ```
 kubectl delete -k ../ping-pong
 kubectl delete -k .
+```
 
 ## External access to the webpage
 If you use k3d, you should forward a port to your cluster from Docker, for example, `-p 8081:80@loadbalancer`.  
