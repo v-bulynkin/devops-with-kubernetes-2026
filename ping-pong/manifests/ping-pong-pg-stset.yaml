@@ -34,6 +34,11 @@ spec:
                 secretKeyRef:
                   name: ping-pong-secret
                   key: DB_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: ping-pong-cm
+                  key: DB_NAME
   volumeClaimTemplates:
     - metadata:
         name: pg-storage
