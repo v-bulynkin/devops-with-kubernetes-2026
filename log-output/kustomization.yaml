@@ -1,6 +1,13 @@
 resources:
-  - pv
   - manifests/namespace.yaml
-  - manifests
-  - ../ping-pong/manifests
+  - manifests/pv.yaml
+  - manifests/pvc.yaml
+  - manifests/configmap.yaml
+  - manifests/deployment.yaml
+  - manifests/service.yaml
+  - manifests/ingress.yaml
+  - ../ping-pong/manifests/configmap.yaml
+  - ../ping-pong/manifests/secrets.yaml
+  - ../ping-pong/manifests/ping-pong-pg-stset.yaml
+  - ../ping-pong/manifests/ping-pong-deploy.yaml
 namespace: exercises
