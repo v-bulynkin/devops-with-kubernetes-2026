@@ -34,16 +34,23 @@ Dockerhub pages:
 https://hub.docker.com/r/bvadocker/log-output-writer  
 https://hub.docker.com/r/bvadocker/log-output-reader
 
-## How to run the service in k8s
-First of all, persistent volume and "exercises" namespace must be created:
+## Start / stop
+Start / update
 ```
-kubectl apply -f pv -f manifests/namespace.yaml
+kubectl apply -k .
+kubectl apply -k ../ping-pong
 ```
 
-Then, start log-output and ping-pong:
+Stop and keep persistent data:
 ```
-kubectl apply -f manifests -f ../ping-pong/manifests
+kubectl delete deploy -n exercises ping-pong log-output
+kubectl delete statefulset -n exercises ping-pong-pg-stset
 ```
+
+Stop and delete everything:
+```
+kubectl delete -k ../ping-pong
+kubectl delete -k .
 
 ## External access to the webpage
 If you use k3d, you should forward a port to your cluster from Docker, for example, `-p 8081:80@loadbalancer`.  

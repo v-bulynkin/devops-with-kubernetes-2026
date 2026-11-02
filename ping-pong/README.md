@@ -1,27 +1,35 @@
 # Ping-pong app
 
-Application that simply responds with "pong $NUMBER" to a GET request and increases a counter (the $NUMBER) so that you can see how many requests have been sent. The counter is kept in memory so it resets at app restart. Route requests directed '/pingpong' to it.
+Application that simply responds with "pong $NUMBER" to a GET request and increases a counter (the $NUMBER) so that you can see how many requests have been sent. The counter is kept in Postgres DB. Route requests directed '/pingpong' to it.
 
 Works together with [log-output app](../log-output/README.md), showing current score on its webpage (via HTTP GET requests to URL /pings from log-output-reader container).
 
 ## Build image
 ```
 # in the Dockerfile directory
-docker build -t bvadocker/ping-pong:2.1 .
+docker build -t bvadocker/ping-pong:2.7 .
 # push
-docker push bvadocker/ping-pong:2.1
+docker push bvadocker/ping-pong:2.7
 ```
 Dockerhub page: https://hub.docker.com/r/bvadocker/ping-pong
 
-## How to run the service in k8s
-First of all, persistent volume and "exercises" namespace must be created (from log-output):
+## Start / stop
+Start / update
 ```
-kubectl apply -f ../log-output/pv -f ../log-output/manifests/namespace.yaml
+kubectl apply -k ../log-output
+kubectl apply -k .
 ```
 
-Then, start log-output and ping-pong:
+Stop and keep persistent data:
 ```
-kubectl apply -f ../log-output/manifests -f manifests
+kubectl delete deploy -n exercises ping-pong log-output
+kubectl delete statefulset -n exercises ping-pong-pg-stset
+```
+
+Stop and delete everything:
+```
+kubectl delete -k .
+kubectl delete -k ../log-output
 ```
 
 ## External access to the webpage
