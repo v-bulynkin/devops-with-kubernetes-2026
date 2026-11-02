@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-pong
+  namespace: exercises
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ping-pong
+  template:
+    metadata:
+      labels:
+        app: ping-pong
+    spec:
+      initContainers:
+        - name: pg-check
+          image: postgres:alpine
+          command: ['sh', '-c', 'until pg_isready -h $DB_HOST -p $DB_PORT; do echo Waiting for DB...; sleep 2; done']
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: ping-pong-cm
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: ping-pong-cm
+                  key: DB_PORT
+      containers:
+        - name: ping-pong
+          image: bvadocker/ping-pong:2.7
+          imagePullPolicy: Always
+          securityContext:
+            runAsUser: 1000
+            fsGroup: 2000
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: ping-pong-cm
+                  key: DB_HOST
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: ping-pong-cm
+                  key: DB_NAME
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: ping-pong-cm
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ping-pong-secret
+                  key: DB_PASSWORD
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: ping-pong-cm
+                  key: DB_PORT
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ping-pong-svc
+  namespace: exercises
+spec:
+  type: ClusterIP
+  selector:
+    app: ping-pong
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

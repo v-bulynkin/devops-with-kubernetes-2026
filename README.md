@@ -24,3 +24,4 @@
 [2.4](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.4/project) - add "project" namespace and move project into it  
 [2.5](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.5/log-output) - add ConfigMap to log-output  
 [2.6](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.6/project) - add ConfigMap to project (no hardcoded ports, URLs or other configurations in the source code)  
+[2.7](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.7/ping-pong) - ping-pong counter in Postgres DB  
