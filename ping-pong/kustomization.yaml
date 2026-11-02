@@ -1,0 +1,6 @@
+resources:
+  - ../log-output/pv
+  - ../log-output/manifests/namespace.yaml
+  - ../log-output/manifests
+  - manifests
+namespace: exercises

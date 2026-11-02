@@ -1,0 +1,6 @@
+resources:
+  - pv
+  - manifests/namespace.yaml
+  - manifests
+  - ../ping-pong/manifests
+namespace: exercises
