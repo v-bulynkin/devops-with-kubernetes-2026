@@ -1,11 +1,4 @@
 resources:
-  - ../log-output/manifests/namespace.yaml
-  - ../log-output/manifests/pv.yaml
-  - ../log-output/manifests/pvc.yaml
-  - ../log-output/manifests/configmap.yaml
-  - ../log-output/manifests/deployment.yaml
-  - ../log-output/manifests/service.yaml
-  - ../log-output/manifests/ingress.yaml
   - manifests/configmap.yaml
   - manifests/secrets.yaml
   - manifests/ping-pong-pg-stset.yaml
