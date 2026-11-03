@@ -2,18 +2,29 @@
 
 **Todo-app** is to serve the HTML and JavaScript to the browser. Also, the logic for serving random pictures and caching those remains in that service. Takes care of the todo items.
 
-**Todo-backend** have a GET /todos endpoint for fetching the list of todos and a POST /todos endpoint for creating a new todo. The todos are saved in memory.
+**Todo-backend** have a GET /todos endpoint for fetching the list of todos and a POST /todos endpoint for creating a new todo. The todos are saved in Postgres DB.
 
-All objects in the project are located in the "project" namespace in Kubernetes.
+All objects in the project are located in the "project" namespace in Kubernetes .
 
-## How to start
+## Start / stop
 
 In `manifests/todo-app-deploy.yaml` you need to set BACKEND_BASE_URL environment variable which point to your base backend URL, for example, http://example.com:1234.
 
-After it's completed, start the rest:
+After it's completed, start the application:
 
 ```
-kubectl apply -f pv -f manifests
+kubectl apply -k .
+```
+
+Stop and keep persistent data:
+```
+kubectl delete deploy -n project todo-app-deploy todo-backend-deploy
+kubectl delete statefulset -n project todo-pg-stset
+```
+
+Stop and delete everything:
+```
+kubectl delete -k .
 ```
 
 ## Screenshots
