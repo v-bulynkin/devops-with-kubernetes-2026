@@ -25,3 +25,4 @@
 [2.5](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.5/log-output) - add ConfigMap to log-output  
 [2.6](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.6/project) - add ConfigMap to project (no hardcoded ports, URLs or other configurations in the source code)  
 [2.7](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.7/ping-pong) - ping-pong counter in Postgres DB (+ kustomization, initContainer)  
+[2.8](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.8/project) - project todos in Postgres DB (+ kustomization, initContainer)  

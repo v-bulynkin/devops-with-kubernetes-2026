@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todo-app
-  namespace: project
 spec:
   replicas: 1
   selector:
@@ -28,46 +27,46 @@ spec:
           - name: BACKEND_BASE_URL
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: BACKEND_BASE_URL
           - name: APP_PORT
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: APP_PORT
           - name: CACHE_DIR
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: CACHE_DIR
           - name: CACHE_FILE
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: CACHE_FILE
           - name: META_FILE
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: META_FILE
           - name: CACHE_DURATION
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: CACHE_DURATION
           - name: IMAGES_BASEURL
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: IMAGES_BASEURL
           - name: IMAGES_EXTENSION
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: IMAGES_EXTENSION
           - name: TEMPLATE_IMAGE_URL
             valueFrom:
               configMapKeyRef:
-                name: project-cm
+                name: todo-cm
                 key: TEMPLATE_IMAGE_URL
 
