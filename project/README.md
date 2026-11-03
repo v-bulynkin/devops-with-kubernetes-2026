@@ -8,7 +8,7 @@ All objects in the project are located in the "project" namespace in Kubernetes 
 
 ## Start / stop
 
-In `manifests/todo-app-deploy.yaml` you need to set BACKEND_BASE_URL environment variable which point to your base backend URL, for example, http://example.com:1234.
+In `manifests/configmap.yaml` you need to set BACKEND_BASE_URL environment variable which point to your base backend URL, for example, http://example.com:1234.
 
 After it's completed, start the application:
 
