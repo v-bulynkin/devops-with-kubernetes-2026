@@ -1,0 +1,11 @@
+resources:
+  - pv.yaml
+  - pvc.yaml
+  - configmap.yaml
+  - secrets.yaml
+  - todo-pg-stset.yaml
+  - todo-backend-deploy.yaml
+  - todo-app-deploy.yaml
+  - todo-backend-svc.yaml
+  - todo-app-svc.yaml
+  - ingress.yaml
