@@ -10,6 +10,10 @@ app = Flask(__name__)
 def get_db_uri():
     url = os.environ.get('DATABASE_URL')
     if url:
+        # Compatibility with SQLAlchemy 2.0+:
+        # if using postgresql://, point to psycopg2 driver explicitly
+        if url.startswith("postgresql://"):
+            url = url.replace("postgresql://", "postgresql+psycopg2://", 1)
         return url
 
     user = os.environ.get('DB_USER')
@@ -19,7 +23,7 @@ def get_db_uri():
     dbname = os.environ.get('DB_NAME', 'todos')
 
     if user and password:
-        return f"postgresql://{user}:{password}@{host}:{port}/{dbname}"
+        return f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}"
     
     return 'sqlite:///todos.db'
 
