@@ -31,8 +31,8 @@ kubectl delete -k .
 
 Cronjob to add/remove "Read <random Wikipedia link>" to the todo list every hour:
 ```
-kubectl apply -n project -k manifests/cronjob.yaml
-kubectl delete -n project -k manifests/cronjob.yaml
+kubectl apply -n project -f manifests/cronjob.yaml
+kubectl delete -n project -f manifests/cronjob.yaml
 ```
 
 ## Screenshots
