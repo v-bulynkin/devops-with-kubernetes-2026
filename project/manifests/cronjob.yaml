@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: add-todo-wiki
+spec:
+  schedule: "@hourly"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: add-todo-wiki
+            image: badouralix/curl-jq
+            command:
+            - /bin/sh
+            - -c
+            - |
+              url=$(curl -Ls -o /dev/null -w "%{url_effective}" \
+              https://en.wikipedia.org/wiki/Special:Random)
+              printf '{"todo":"Read %s"}' "$url" | curl -X POST \
+              -H "Content-Type: application/json" \
+              -d @- http://todo-backend-svc:5000/todos
+          restartPolicy: OnFailure
