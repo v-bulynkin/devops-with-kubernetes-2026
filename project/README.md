@@ -27,6 +27,20 @@ Stop and delete everything:
 kubectl delete -k .
 ```
 
+## Monitoring
+
+In Grafana you can make a query to Loki
+```
+{namespace="project"} |= "ERROR"
+```
+
+and it will show errors from backend if the todo string exceeds the limit (default 140 characters):
+```
+2026-11-07 11:44:24,271 - ERROR - Failed to add todo: Task exceeds 140 characters. Length: 160
+2026-11-07 11:40:57,292 - ERROR - Failed to add todo: Task exceeds 140 characters. Length: 285
+2026-11-07 11:40:02,044 - ERROR - Failed to add todo: Task exceeds 140 characters. Length: 142
+```
+
 ## Misc
 
 Cronjob to add/remove "Read <random Wikipedia link>" to the todo list every hour:

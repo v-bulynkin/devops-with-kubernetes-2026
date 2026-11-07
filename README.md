@@ -27,3 +27,4 @@
 [2.7](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.7/ping-pong) - ping-pong counter in Postgres DB (+ kustomization, initContainer)  
 [2.8](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.8/project) - project todos in Postgres DB (+ kustomization, initContainer)  
 [2.9](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.9/project) - add todo (random Wikipedia URL) every hour by cronjob  
+[2.10](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.10/project) - show errors from backend if the todo string exceeds the limit  
