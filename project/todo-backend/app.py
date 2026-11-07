@@ -1,8 +1,12 @@
 import os
+import logging
+
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+TODO_MAX_LENGTH = int(os.environ.get('TODO_MAX_LENGTH', 140))
 
 # Database configuration
 # In production, the app can use a full DATABASE_URL 
@@ -54,7 +58,14 @@ def get_todos():
 def add_todo():
     data = request.get_json()
     if data and 'todo' in data:
-        new_todo = Todo(task=data['todo'])
+        todo_task = data['todo']
+        logging.info(f"Received todo task: {todo_task}")
+        
+        if len(todo_task) > TODO_MAX_LENGTH:
+            logging.error(f"Failed to add todo: Task exceeds {TODO_MAX_LENGTH} characters. Length: {len(todo_task)}")
+            return jsonify({"status": "error", "message": f"Task is too long. Maximum {TODO_MAX_LENGTH} characters allowed."}), 400
+
+        new_todo = Todo(task=todo_task)
         db.session.add(new_todo)
         db.session.commit()
         return jsonify({"status": "success"}), 201

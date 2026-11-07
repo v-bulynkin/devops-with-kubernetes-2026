@@ -26,6 +26,11 @@ COPY . .
 # Ensure the local bin directory is in the PATH
 ENV PATH=/root/.local/bin:$PATH
 
+# Application configuration defaults
+ENV TODO_MAX_LENGTH=140
+ENV BACKEND_PORT=5000
+ENV BACKEND_SUFFIX=/todos
+
 EXPOSE 5000
 
 CMD ["python", "app.py"]
