@@ -70,7 +70,8 @@ def index():
         return "Error loading image", 500
 
     backend_base_url = os.environ.get('BACKEND_BASE_URL')
-    return render_template('index.html', image_url=TEMPLATE_IMAGE_URL, backend_base_url=backend_base_url)
+    todo_max_length = os.environ.get('TODO_MAX_LENGTH', '140')
+    return render_template('index.html', image_url=TEMPLATE_IMAGE_URL, backend_base_url=backend_base_url, todo_max_length=todo_max_length)
 
 @app.route(TEMPLATE_IMAGE_URL)
 def serve_image():
