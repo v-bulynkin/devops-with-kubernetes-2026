@@ -111,9 +111,10 @@
     
     <!-- Input field -->
     <div class="input-container">
-        <input type="text" id="todo-input" maxlength="140" placeholder="Enter a new todo (max 140 characters)">
+        <input type="text" id="todo-input" placeholder="Enter a new todo">
         <button id="send-btn" class="send-btn">Send</button>
     </div>
+    <div id="error-message" style="color: red; text-align: center; margin-bottom: 10px; min-height: 1.2em; font-size: 0.9rem;"></div>
 
     <!-- Todos list -->
     <h2>Todos</h2>
@@ -156,11 +157,15 @@
                 },
                 body: JSON.stringify({ todo: todoText })
             });
+            const errorMsgDiv = document.getElementById('error-message');
             if (response.ok) {
                 todoInput.value = '';
                 await fetchTodos();
+                errorMsgDiv.textContent = '';
             } else {
-                console.error('Error adding todo:', response.statusText);
+                const errorData = await response.json();
+                console.error('Error adding todo:', response.statusText, errorData);
+                errorMsgDiv.textContent = errorData.message || 'Error adding todo';
             }
         } catch (err) {
             console.error('Error adding todo:', err);
