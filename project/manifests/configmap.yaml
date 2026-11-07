@@ -18,3 +18,4 @@ data:
   DB_NAME: "todo"
   DB_USER: "postgres"
   DB_PORT: "5432"
+  TODO_MAX_LENGTH: "140" # default 140
