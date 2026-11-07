@@ -145,7 +145,13 @@
         }
     }
 
-    sendBtn.addEventListener('click', async () => {
+    todoInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            sendBtn.click();
+        }
+    });
+
+sendBtn.addEventListener('click', async () => {
         const todoText = todoInput.value.trim();
         if (!todoText) return;
 
