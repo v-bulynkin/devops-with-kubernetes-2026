@@ -76,4 +76,4 @@ spec:
   ports:
     - port: 80
       targetPort: 5000
-      appProtocol: k8s.timeweb.cloud/proto-http
+      appProtocol: k8s.timeweb.cloud/proto-tcp
