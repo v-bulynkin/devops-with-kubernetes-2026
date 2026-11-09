@@ -28,3 +28,9 @@
 [2.8](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.8/project) - project todos in Postgres DB (+ kustomization, initContainer)  
 [2.9](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.9/project) - add todo (random Wikipedia URL) every hour by cronjob  
 [2.10](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/2.10/project) - show errors from backend if the todo string exceeds the limit  
+
+## Chapter 4 (cloud)
+
+<small>Due to GKE unavailability for me, using Timeweb cloud</small>
+
+[3.1](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.1/ping-pong) - publish ping-pong app in the cloud with LoadBalancer service  
