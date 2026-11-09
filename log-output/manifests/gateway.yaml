@@ -10,5 +10,5 @@ spec:
       protocol: HTTP
       port: 5000
       allowedRoutes:
-        namespaces:
-          from: Same
+        kinds:
+          - kind: HTTPRoute
