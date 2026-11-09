@@ -40,3 +40,30 @@ Service port: 5000
 Pod port: 5000
 
 URL example: http://k1:8081/pingpong
+
+## In the cloud
+
+This chapter describes the specifics of installing the application on Timeweb cloud.
+
+In StatefulSet:
+
+- storageClassName: nvme.network-drives.csi.timeweb.cloud
+- storage: 1Gi (it's minimum)
+
+In service:
+
+- add `type: LoadBalancer` to spec
+- ports:  
+```
+ports:
+    - port: 80
+      targetPort: 5000
+      appProtocol: k8s.timeweb.cloud/proto-tcp
+```
+- add annotations (optional):  
+```
+annotations:
+    k8s.timeweb.cloud/attached-loadbalancer-preset-id: "5117"
+    k8s.timeweb.cloud/attached-loadbalancer-no-external-ip: "false"
+    k8s.timeweb.cloud/attached-loadbalancer-ddos-guard-external-ip: "false"
+```

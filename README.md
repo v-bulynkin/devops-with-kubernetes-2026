@@ -31,6 +31,6 @@
 
 ## Chapter 4 (cloud)
 
-<small>Due to GKE unavailability for me, using Timeweb cloud</small>
+<sup>Due to GKE unavailability for me, using Timeweb cloud</sup>
 
 [3.1](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.1/ping-pong) - publish ping-pong app in the cloud with LoadBalancer service  
