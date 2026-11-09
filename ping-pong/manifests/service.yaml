@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ping-pong-svc
+  namespace: exercises
+  # annotations:
+  #   k8s.timeweb.cloud/attached-loadbalancer-preset-id: "5117"
+  #   k8s.timeweb.cloud/attached-loadbalancer-no-external-ip: "false"
+  #   k8s.timeweb.cloud/attached-loadbalancer-ddos-guard-external-ip: "false"
+spec:
+  # type: LoadBalancer
+  type: ClusterIP
+  selector:
+    app: ping-pong
+  ports:
+    - port: 5000
+      protocol: TCP
+      targetPort: 5000
+      # appProtocol: k8s.timeweb.cloud/proto-tcp

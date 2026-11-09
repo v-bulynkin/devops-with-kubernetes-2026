@@ -34,3 +34,5 @@
 <sup>Due to GKE unavailability for me, using Timeweb cloud</sup>
 
 [3.1](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.1/ping-pong) - publish ping-pong app in the cloud with LoadBalancer service  
+3.2 - Deploy the "Log output" and "Ping-pong" applications into GKE and expose it with Ingress (couldn't do)  
+[3.3](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.3/log-output) - Replace the Ingress with Gateway API in the "Log output" and "Ping-pong" applications  

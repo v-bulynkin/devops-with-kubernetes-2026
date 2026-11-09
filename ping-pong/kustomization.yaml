@@ -3,4 +3,5 @@ resources:
   - manifests/secrets.yaml
   - manifests/ping-pong-pg-stset.yaml
   - manifests/ping-pong-deploy.yaml
+  - manifests/service.yaml
 namespace: exercises
