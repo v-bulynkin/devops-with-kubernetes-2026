@@ -33,6 +33,8 @@ kubectl delete -k ../log-output
 ```
 
 ## External access to the webpage
+
+### In a local k3d
 If you use k3d, you should forward a port to your cluster from Docker, for example, `-p 8081:80@loadbalancer`.  
 In this case, the external access will be http://\<your docker server ip or localhost\>:8081  
 Ingress path: /pingpong  
@@ -41,7 +43,7 @@ Pod port: 5000
 
 URL example: http://k1:8081/pingpong
 
-## In the cloud
+### In a cloud
 
 This chapter describes the specifics of installing the application on Timeweb cloud.
 
@@ -50,9 +52,9 @@ In StatefulSet:
 - storageClassName: nvme.network-drives.csi.timeweb.cloud
 - storage: 1Gi (it's minimum)
 
-In service:
+#### Service if using loadbalancer
 
-- add `type: LoadBalancer` to spec
+- set `type: LoadBalancer` in spec
 - ports:  
 ```
 ports:
@@ -67,3 +69,18 @@ annotations:
     k8s.timeweb.cloud/attached-loadbalancer-no-external-ip: "false"
     k8s.timeweb.cloud/attached-loadbalancer-ddos-guard-external-ip: "false"
 ```
+
+Don't apply ingress manifest!
+
+#### Service if using Ingress
+
+- set `type: ClusterIP` in spec
+- ports (remove appProtocol key):  
+```
+ports:
+    - port: 80
+      targetPort: 5000
+```
+- remove annotations
+
+Apply the Ingress (see in log-output) after all other manifests.

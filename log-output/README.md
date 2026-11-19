@@ -54,6 +54,8 @@ kubectl delete -k .
 ```
 
 ## External access to the webpage
+
+### In a local k3d
 If you use k3d, you should forward a port to your cluster from Docker, for example, `-p 8081:80@loadbalancer`.  
 In this case, the external access will be http://\<your docker server ip or localhost\>:8081  
 Ingress path: /  
@@ -61,3 +63,31 @@ Service port: 5000
 Pod port: 5000
 
 URL example: http://k1:8081
+
+### In a cloud
+Here is an example for Timeweb cloud provider.
+
+You have to install CSI driver and Nginx Ingress addons to your cluster before starting apps. CSI driver is necessary to create PVC and Nginx Ingress controller allows to obtain an external IP address.
+
+After deploy, check your external IP:
+
+```
+kubectl get ingress -n exercises
+NAME                 CLASS   HOSTS   ADDRESS          PORTS   AGE
+log-output-ingress   nginx   *       201.34.148.107   80      22m
+```
+
+If you see an IP address in the ADDRESS column, try to access the app in a browser using this IP.
+
+If there is no address, check if Ingress controller pod is running:
+```
+kubectl get pods -A | grep -iE "ingress|nginx"
+```
+
+If so, try to recreate the ingress:
+```
+kubectl delete ingress log-output-ingress -n exercises
+kubectl apply -f .\manifests\ingress.yaml
+```
+
+Give the ingress a couple of minutes after recreation to obtain an external IP.
