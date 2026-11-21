@@ -1,15 +1,17 @@
 # Ping-pong app
 
-Application that simply responds with "pong $NUMBER" to a GET request and increases a counter (the $NUMBER) so that you can see how many requests have been sent. The counter is kept in Postgres DB. Route requests directed '/pingpong' to it.
+Application that simply responds with "pong $NUMBER" to a GET request and increases a counter (the $NUMBER) so that you can see how many requests have been sent. The counter is kept in Postgres DB. Route requests directed '/' to it.
+
+Ping-pong app responds itself to the URL /, but externally available at /pingpong due to HTTPRoute.
 
 Works together with [log-output app](../log-output/README.md), showing current score on its webpage (via HTTP GET requests to URL /pings from log-output-reader container).
 
 ## Build image
 ```
 # in the Dockerfile directory
-docker build -t bvadocker/ping-pong:2.7 .
+docker build -t bvadocker/ping-pong:3.4 .
 # push
-docker push bvadocker/ping-pong:2.7
+docker push bvadocker/ping-pong:3.4
 ```
 Dockerhub page: https://hub.docker.com/r/bvadocker/ping-pong
 
