@@ -67,7 +67,11 @@ URL example: http://k1:8081
 ### In a cloud
 Here is an example for Timeweb cloud provider.
 
-You have to install CSI driver and Nginx Ingress addons to your cluster before starting apps. CSI driver is necessary to create PVC and Nginx Ingress controller allows to obtain an external IP address.
+You have to install CSI driver and Nginx Ingress addons to your cluster before starting apps. CSI driver is necessary to create PVC.
+
+#### If using Ingress
+
+Install Nginx Ingress controller to your cluster before starting apps. It allows to obtain an external IP address.
 
 After deploy, check your external IP:
 
@@ -91,3 +95,13 @@ kubectl apply -f .\manifests\ingress.yaml
 ```
 
 Give the ingress a couple of minutes after recreation to obtain an external IP.
+
+#### If using Gateway IP
+
+In this case, install the Envoy Gateway controller addon to your cluster before starting apps and remove the Nginx Ingress controller addon from your cluster if it was installed (to save resources).
+
+Ingress manifest is no longer used in this case.
+
+The network access scheme if you use Gateway:
+
+Remove ingress and create gatewayclass (provider-specific and without namespace like PV objects), gateway and route.

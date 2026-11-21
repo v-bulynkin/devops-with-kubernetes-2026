@@ -84,3 +84,7 @@ ports:
 - remove annotations
 
 Apply the Ingress (see in log-output) after all other manifests.
+
+#### Route if using Gateway API
+
+Gateway API add gatewayclass and gateway in log-output app and routes in both apps. Ingress is no longer used in this case.
