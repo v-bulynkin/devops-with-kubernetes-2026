@@ -102,6 +102,10 @@ In this case, install the Envoy Gateway controller addon to your cluster before 
 
 Ingress manifest is no longer used in this case.
 
-The network access scheme if you use Gateway:
-
 Remove ingress and create gatewayclass (provider-specific and without namespace like PV objects), gateway and route.
+
+Functionality check:
+```
+kubectl get gatewayclass envoy-gateway            # ACCEPTED=True
+kubectl get gateway exercises-gateway -n exercises # PROGRAMMED=True, ADDRESS has to show the external IP for web access
+```
