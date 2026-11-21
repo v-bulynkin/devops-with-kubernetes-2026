@@ -96,7 +96,7 @@ kubectl apply -f .\manifests\ingress.yaml
 
 Give the ingress a couple of minutes after recreation to obtain an external IP.
 
-#### If using Gateway IP
+#### If using Gateway API
 
 In this case, install the Envoy Gateway controller addon to your cluster before starting apps and remove the Nginx Ingress controller addon from your cluster if it was installed (to save resources).
 
