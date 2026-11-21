@@ -28,7 +28,7 @@ def init_db():
 
 init_db()
 
-@app.route('/pingpong', methods=['GET'])
+@app.route('/', methods=['GET'])
 def ping_pong():
     # Increment counter in database and return new value
     conn = get_db_connection()
