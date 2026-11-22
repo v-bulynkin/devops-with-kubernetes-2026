@@ -1,0 +1,10 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: envoy-gateway
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+
+# https://timeweb.cloud/docs/k8s/addons/envoy-gateway#sozdanie-gatewayclass
+# kubectl apply -f gatewayclass.yaml
+# kubectl get gatewayclass envoy-gateway # ACCEPTED must be True

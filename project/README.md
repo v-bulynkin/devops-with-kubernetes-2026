@@ -8,13 +8,19 @@ All objects in the project are located in the "project" namespace in Kubernetes 
 
 ## Start / stop
 
-In `manifests/configmap.yaml` you need to set BACKEND_BASE_URL environment variable which point to your base backend URL, for example, http://example.com:1234.
+In `manifests/configmap.yaml` you must set BACKEND_BASE_URL environment variable which point to your base backend URL, for example, http://example.com:1234.
 
 After it's completed, start the application:
 
 ```
 kubectl apply -k .
 ```
+
+If you use cloud k8s:
+
+- Change `storageClassName` in StatefulSet and PVC manifests to provider's (Timeweb: `storageClassName: nvme.network-drives.csi.timeweb.cloud`)
+- Replace Ingress to GatewayClass + Gateway + route in kustomization.yaml.
+- Once the external IP of your gateway is known, you will need to change BACKEND_BASE_URL in the ConfigMap accordingly and restart the deployments.
 
 Stop and keep persistent data:
 ```

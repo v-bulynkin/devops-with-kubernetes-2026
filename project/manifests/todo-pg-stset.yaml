@@ -43,10 +43,11 @@ spec:
         name: pg-storage
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: local-path
+        # storageClassName: local-path
+        storageClassName: nvme.network-drives.csi.timeweb.cloud # for Timeweb cloud
         resources:
           requests:
-            storage: 100Mi
+            storage: 1Gi
 
 ---
 

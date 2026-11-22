@@ -1,3 +1,21 @@
 resources:
-  - manifests
+  # - manifests/pv.yaml
+  - manifests/namespace.yaml
+  - manifests/pvc.yaml
+  - manifests/configmap.yaml
+  - manifests/secrets.yaml
+  - manifests/todo-pg-stset.yaml
+  - manifests/todo-backend-deploy.yaml
+  - manifests/todo-app-deploy.yaml
+  - manifests/todo-backend-svc.yaml
+  - manifests/todo-app-svc.yaml
+  # - manifests/ingress.yaml
+  - manifests/gatewayclass.yaml
+  - manifests/gateway.yaml
+  - manifests/route.yaml
+images:
+  - name: IMG_APP
+    newName: docker.io/bvadocker/todo-app:2.10
+  - name: IMG_BACKEND
+    newName: docker.io/bvadocker/todo-backend:2.10
 namespace: project

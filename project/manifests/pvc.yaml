@@ -3,7 +3,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: todo-app-pvc # name of the volume claim, this will be used in the deployment
 spec:
-  storageClassName: todo-app-pv # this is the name of the persistent volume we are claiming
+  #storageClassName: todo-app-pv # this is the name of the persistent volume we are claiming
+  storageClassName: nvme.network-drives.csi.timeweb.cloud # for Timeweb cloud
   accessModes:
     - ReadWriteOnce
   resources:
