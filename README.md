@@ -38,3 +38,4 @@
 [3.3](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.3/log-output) - Replace the Ingress with Gateway API in the "Log output" and "Ping-pong" applications  
 [3.4](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.4/ping-pong) - Ping-pong app now responds itself to the URL /, but externally available at /pingpong due to HTTPRoute  
 [3.5](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.5/project) - Deploy project to the cloud and use Kustomize  
+[3.6](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.6/project) - Build and deploy to the cloud using Github Actions  
