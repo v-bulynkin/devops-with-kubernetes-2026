@@ -1,7 +1,9 @@
 ---
 # Delete the environment if the branch has been deleted
 # Main branch is excluded
-name: Delete namespace after branch
+name: Delete namespace after branch # Static name
+run-name: Delete namespace after branch ${{ github.event.ref }} # Dynamic name
+
 on:
   delete:
 
@@ -25,5 +27,5 @@ jobs:
             DELETING_BRANCH="${{ github.event.ref }}"
             # SAFE_NAME - lowercase letters, digits and hyphens only
             SAFE_NAME=$(echo "${DELETING_BRANCH#refs/heads/}" |tr '[:upper:]' '[:lower:]' |sed -E 's/[^a-z0-9-]/-/g; s/-{2,}/-/g; s/^-|-$//g')
-            echo "Deleting namespace $SAFE_NAME after branch $DELETING_BRANCH"
-            # kubectl delete namespace $SAFE_NAME || true
+            echo "Deleting namespace $SAFE_NAME after branch ${DELETING_BRANCH}..."
+            kubectl delete namespace $SAFE_NAME || true
