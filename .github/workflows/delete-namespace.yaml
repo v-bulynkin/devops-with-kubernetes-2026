@@ -1,0 +1,29 @@
+---
+# Delete the environment if the branch has been deleted
+# Main branch is excluded
+name: Delete namespace after branch
+on:
+  delete:
+    branches-ignore:
+      - main
+
+jobs:
+  delete-namespace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install kubectl
+        uses: alexellis/arkade-get@master
+        with:
+          kubectl: latest
+      
+      - name: Set up Kubeconfig
+        run: |
+          mkdir $HOME/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+
+      - name: Delete namespace
+        run: |
+            # SAFE_NAME - lowercase letters, digits and hyphens only
+            SAFE_NAME=$(echo "$GITHUB_REF_NAME" |tr '[:upper:]' '[:lower:]' |sed -E 's/[^a-z0-9-]/-/g; s/-{2,}/-/g; s/^-|-$//g')
+            echo "Deleting namespace $SAFE_NAME after branch $GITHUB_REF"
+            # kubectl delete namespace $SAFE_NAME || true
