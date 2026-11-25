@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: todo-cm
 data:
-  BACKEND_BASE_URL: "http://201.24.117.198"
+  BACKEND_BASE_URL: "http://136.234.175.110"
   APP_PORT: "5000"
   BACKEND_PORT: "5000"
   BACKEND_SUFFIX: "/todos"

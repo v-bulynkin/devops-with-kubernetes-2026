@@ -33,6 +33,17 @@ Stop and delete everything:
 kubectl delete -k .
 ```
 
+### Github actions
+
+In Github, there are actions that deploys the project to Timeweb cloud k8s (I use Gitea actions). It is triggered after every push to the repository.
+
+You need to set the following environment variables and secrets in Github:
+
+- Environment: IMAGE_TAG (docker images version)
+- Secret: KUBE_CONFIG (your kube config)
+- Secret: DOCKERHUB_USERNAME (your docker repository username)
+- Secret: DOCKERHUB_PASSWORD (your docker repository password)
+
 ## Monitoring
 
 In Grafana you can make a query to Loki
