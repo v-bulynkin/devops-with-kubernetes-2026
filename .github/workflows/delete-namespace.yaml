@@ -4,11 +4,10 @@
 name: Delete namespace after branch
 on:
   delete:
-    branches-ignore:
-      - main
 
 jobs:
   delete-namespace:
+    if: github.ref_name != 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Install kubectl
@@ -24,6 +23,6 @@ jobs:
       - name: Delete namespace
         run: |
             # SAFE_NAME - lowercase letters, digits and hyphens only
-            SAFE_NAME=$(echo "$GITHUB_REF_NAME" |tr '[:upper:]' '[:lower:]' |sed -E 's/[^a-z0-9-]/-/g; s/-{2,}/-/g; s/^-|-$//g')
+            SAFE_NAME=$(echo "${GITHUB_REF#refs/heads/}" |tr '[:upper:]' '[:lower:]' |sed -E 's/[^a-z0-9-]/-/g; s/-{2,}/-/g; s/^-|-$//g')
             echo "Deleting namespace $SAFE_NAME after branch $GITHUB_REF"
             # kubectl delete namespace $SAFE_NAME || true
