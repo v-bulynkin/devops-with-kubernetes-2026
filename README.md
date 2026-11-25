@@ -39,3 +39,4 @@
 [3.4](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.4/ping-pong) - Ping-pong app now responds itself to the URL /, but externally available at /pingpong due to HTTPRoute  
 [3.5](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.5/project) - Deploy project to the cloud and use Kustomize  
 [3.6](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.6/project) - Build and deploy to the cloud using Github Actions  
+[3.7](https://github.com/v-bulynkin/devops-with-kubernetes-2026/tree/3.7/project) - Each branch is deployed to a separate namespace with the same name  
