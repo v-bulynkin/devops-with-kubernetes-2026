@@ -56,9 +56,11 @@ jobs:
       - name: Select namespace, edit kustomization.yaml
         run: |
           if [[ "$GITHUB_REF_NAME" != main ]]; then
-            kustomize edit set namespace $GITHUB_REF_NAME
-            kubectl create namespace $GITHUB_REF_NAME || true
-            kubectl config set-context --current --namespace=$GITHUB_REF_NAME
+            # SAFE_NAME - lowercase letters, digits and hyphens only
+            SAFE_NAME=$(echo "$GITHUB_REF_NAME" |tr '[:upper:]' '[:lower:]' |sed -E 's/[^a-z0-9-]/-/g; s/-{2,}/-/g; s/^-|-$//g')
+            kustomize edit set namespace $SAFE_NAME
+            kubectl create namespace $SAFE_NAME || true
+            kubectl config set-context --current --namespace=$SAFE_NAME
           fi
           kustomize edit set image IMG_APP=${{ secrets.DOCKERHUB_USERNAME }}/todo-app:${{ vars.IMAGE_TAG }}
           kustomize edit set image IMG_BACKEND=${{ secrets.DOCKERHUB_USERNAME }}/todo-backend:${{ vars.IMAGE_TAG }}
