@@ -27,5 +27,9 @@ jobs:
             DELETING_BRANCH="${{ github.event.ref }}"
             # SAFE_NAME - lowercase letters, digits and hyphens only
             SAFE_NAME=$(echo "${DELETING_BRANCH#refs/heads/}" |tr '[:upper:]' '[:lower:]' |sed -E 's/[^a-z0-9-]/-/g; s/-{2,}/-/g; s/^-|-$//g')
-            echo "Deleting namespace $SAFE_NAME after branch ${DELETING_BRANCH}..."
-            kubectl delete namespace $SAFE_NAME || true
+            if [[ "$SAFE_NAME" != project ]]; then
+              echo "Deleting namespace $SAFE_NAME after branch ${DELETING_BRANCH}..."
+              kubectl delete namespace $SAFE_NAME || true
+            else
+              echo "Keeping the $SAFE_NAME namespace because it belongs to the main branch!"
+            fi

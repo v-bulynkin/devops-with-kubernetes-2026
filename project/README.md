@@ -44,7 +44,8 @@ You need to set the following environment variables and secrets in Github:
 - Secret: DOCKERHUB_USERNAME (your docker repository username)
 - Secret: DOCKERHUB_PASSWORD (your docker repository password)
 
-If you create a branch in Github, the workflow makes a new namespace with the same name and deploy the app into it. The main branch is still be deployed in the namespace "project".
+If you create a branch in Github, the workflow makes a new namespace with the same name and deploy the app into it. The main branch is still be deployed in the namespace "project".  
+If the branch has been deleted, another workflow removes its relative namespace (except "project").
 
 ## Monitoring
 
