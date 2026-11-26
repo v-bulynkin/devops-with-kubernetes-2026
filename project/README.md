@@ -86,3 +86,25 @@ The project is a simple todo application with the familiar features of create, r
 However, the project app is not just a normal todo app, it has some additional features, many of which shall be added to it as separate microservices. The following picture shows some of the services that were added to the project app along the way.
 
 ![Project scheme](pics/project-scheme.png)
+
+## Comparison: DBaaS vs. Self-managed PostgreSQL
+
+#### 1. Setup and initial configuration
+
+- DBaaS: Deployment is very simple: "click-and-run" or a single Terraform module.
+- Self-managed: Requires significant engineering to build a production-ready stack: creating custom images, configuring StatefulSets, StorageClasses for PV, etc.
+
+#### 2. Maintenance and operations
+
+- DBaaS: The cloud provider handles security patches, version upgrades, and automatic failover (high availability). Scaling is a simple configuration change.
+- Self-managed: You are responsible for the entire lifecycle. You must manage version upgrades, kernel patches, and implement your own High Availability logic to avoid downtime during node failures.
+
+#### 3. Backup & Disaster Recovery (DR)
+
+- DBaaS: Built-in, automated backups and seamless recovery. Restoring a database is a standard, tested procedure.
+- Self-managed: You must implement and test your own strategy. This typically involves using third-party tools (like Velero) or complex Operators. Ensuring "crash-consistency" during backups in a containerized environment requires expert handling.
+
+#### Summary
+
+Choose DBaaS if you want speed, reliability, and lower operational overhead. It is ideal for most applications where engineering time is more expensive than cloud prices.  
+Choose Self-managed if you need extreme customization (e.g., specific OS kernel tweaks) or if you have a large-scale, highly optimized platform where the savings on direct infrastructure costs outweigh the increased cost of a dedicated DevOps/DBA team.
